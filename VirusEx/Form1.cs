@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VirusEx
@@ -39,12 +33,12 @@ namespace VirusEx
 			files = (string[])e.Data.GetData(DataFormats.FileDrop);
 			var nvc = new NameValueCollection();
 			nvc.Add("apikey", apiKey);
-			using (WebClient wc = new WebClient())
+			using (var webClient = new WebClient() { QueryString = nvc })
 			{
-				string uploadResult = Encoding.Default.GetString(wc.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan","post", files[0]));
-				label1.Text = uploadResult;
+				webClient.Headers.Add("Content-type", "binary/octet-stream");
+				string uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
+				string resourceId = getJsonValue(uploadResult, "resource");
 			}
-
 		}
 
 		private void panel1_DragEnter(object sender, DragEventArgs e)
@@ -52,7 +46,7 @@ namespace VirusEx
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
 				e.Effect = DragDropEffects.Copy;
-				
+
 			}
 		}
 	}

@@ -41,7 +41,7 @@ namespace VirusEx
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(12, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(277, 201);
+			this.panel1.Size = new System.Drawing.Size(1000, 201);
 			this.panel1.TabIndex = 0;
 			this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel1_DragDrop);
 			this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel1_DragEnter);
@@ -59,7 +59,7 @@ namespace VirusEx
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(301, 225);
+			this.ClientSize = new System.Drawing.Size(1024, 253);
 			this.Controls.Add(this.panel1);
 			this.Name = "Form1";
 			this.Text = "Form1";
