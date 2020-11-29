@@ -1,0 +1,10 @@
+D:\Projects\VirusEx\VirusEx\bin\Debug\VirusEx.exe.config
+D:\Projects\VirusEx\VirusEx\bin\Debug\VirusEx.exe
+D:\Projects\VirusEx\VirusEx\bin\Debug\VirusEx.pdb
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.csprojAssemblyReference.cache
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.Form1.resources
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.Properties.Resources.resources
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.csproj.GenerateResource.cache
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.csproj.CoreCompileInputs.cache
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.exe
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.pdb
