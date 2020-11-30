@@ -54,46 +54,53 @@ namespace VirusEx
 
 		async void panel1_DragDrop(object sender, DragEventArgs e)
 		{
-			label1.Text = "";
-			label2.Text = "";
-			await Task.Run(() =>
+			try
 			{
-				Action action = async () =>
+				label1.Text = "";
+				label2.Text = "";
+				await Task.Run(() =>
 				{
-					string uploadResult, resourceId;
-					files = (string[])e.Data.GetData(DataFormats.FileDrop);
-					VirusTotal virusTotal = new VirusTotal(apiKey);
-					virusTotal.UseTLS = true;
-					var nvc = new NameValueCollection();
-					nvc.Add("apikey", apiKey);
-					using (WebClient webClient = new WebClient() { QueryString = nvc })
+					Action action = async () =>
 					{
-						FileInfo fileInfo = new FileInfo(files[0]);
-						webClient.Headers.Add("Content-type", "binary/octet-stream");
-						do
+						string uploadResult, resourceId;
+						files = (string[])e.Data.GetData(DataFormats.FileDrop);
+						VirusTotal virusTotal = new VirusTotal(apiKey);
+						virusTotal.UseTLS = true;
+						var nvc = new NameValueCollection();
+						nvc.Add("apikey", apiKey);
+						using (WebClient webClient = new WebClient() { QueryString = nvc })
 						{
-							uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
-							resourceId = getJsonValue(uploadResult, "resource");
+							FileInfo fileInfo = new FileInfo(files[0]);
+							webClient.Headers.Add("Content-type", "binary/octet-stream");
+							do
+							{
+								uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
+								resourceId = getJsonValue(uploadResult, "resource");
 
-						} while (resourceId == null);
-						FileReport fileReport = await virusTotal.GetFileReportAsync(resourceId);
-						foreach (var item in fileReport.Scans)
-						{
-							label1.Text += item.Value.Result == null ? "Undetected" + "\r\n" : item.Value.Result.ToString() + "\r\n";
-							label2.Text += item.Value.Result == null ? item.Key.ToString() + "\r\n" : item.Key.ToString() + "\r\n";
+							} while (resourceId == null);
+							FileReport fileReport = await virusTotal.GetFileReportAsync(resourceId);
+							foreach (var item in fileReport.Scans)
+							{
+								label1.Text += item.Value.Result == null ? "Undetected" + "\r\n" : item.Value.Result.ToString() + "\r\n";
+								label2.Text += item.Value.Result == null ? item.Key.ToString() + "\r\n" : item.Key.ToString() + "\r\n";
 
+							}
 						}
+					};
+					if (InvokeRequired)
+					{
+						Invoke(action);
 					}
-				};
-				if (InvokeRequired)
-				{
-					Invoke(action);
-				}
-				else
-				{
-					action();
-				}
-			});
+					else
+					{
+						action();
+					}
+				});
+			}
+			catch (Exception)
+			{
+				MessageBox.Show("Не удалось получить отчёт о файле. Ваш API ключ VirusTotal не безлимитный и имеет ограничение по умолчанию, - 4 запроса в минуту\nПовторите попытку позже", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
 		}
 
 		private void panel1_DragEnter(object sender, DragEventArgs e)
