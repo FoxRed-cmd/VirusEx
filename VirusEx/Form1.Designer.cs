@@ -30,8 +30,8 @@ namespace VirusEx
 		private void InitializeComponent()
 		{
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -44,20 +44,11 @@ namespace VirusEx
 			this.panel1.Controls.Add(this.label1);
 			this.panel1.Location = new System.Drawing.Point(12, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(547, 634);
+			this.panel1.Size = new System.Drawing.Size(547, 454);
 			this.panel1.TabIndex = 0;
 			this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.panel1_DragDrop);
 			this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.panel1_DragEnter);
 			this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(247, 15);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(35, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "label1";
 			// 
 			// label2
 			// 
@@ -68,11 +59,20 @@ namespace VirusEx
 			this.label2.TabIndex = 0;
 			this.label2.Text = "label1";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(247, 15);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(35, 13);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "label1";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(571, 658);
+			this.ClientSize = new System.Drawing.Size(571, 479);
 			this.Controls.Add(this.panel1);
 			this.Name = "Form1";
 			this.Text = "Form1";

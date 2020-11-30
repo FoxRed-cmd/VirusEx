@@ -41,6 +41,7 @@ namespace VirusEx
 			{
 				Action action = async () =>
 				{
+					string uploadResult, resourceId;
 					files = (string[])e.Data.GetData(DataFormats.FileDrop);
 					VirusTotal virusTotal = new VirusTotal(apiKey);
 					virusTotal.UseTLS = true;
@@ -50,8 +51,12 @@ namespace VirusEx
 					{
 						FileInfo fileInfo = new FileInfo(files[0]);
 						webClient.Headers.Add("Content-type", "binary/octet-stream");
-						string uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
-						string resourceId = getJsonValue(uploadResult, "resource");
+						do
+						{
+							uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
+							resourceId = getJsonValue(uploadResult, "resource");
+
+						} while (resourceId == null);
 						FileReport fileReport = await virusTotal.GetFileReportAsync(resourceId);
 						foreach (var item in fileReport.Scans)
 						{
