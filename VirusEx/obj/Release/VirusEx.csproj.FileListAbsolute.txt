@@ -4,7 +4,6 @@ C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\bin\Releas
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\bin\Release\Newtonsoft.Json.dll
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\bin\Release\VirusTotalNet.dll
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\bin\Release\Newtonsoft.Json.xml
-C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Release\VirusEx.csprojAssemblyReference.cache
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Release\VirusEx.Form1.resources
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Release\VirusEx.Properties.Resources.resources
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Release\VirusEx.csproj.GenerateResource.cache
