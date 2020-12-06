@@ -22,3 +22,8 @@ C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Debug\
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.exe
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.pdb
 C:\Users\Llirik\Documents\Visual Studio 2019\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.csprojAssemblyReference.cache
+D:\Projects\VirusEx\VirusEx\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\VirusEx\VirusEx\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\VirusEx\VirusEx\obj\Debug\VirusEx.csproj.CopyComplete
+D:\Projects\VirusEx\VirusEx\bin\Debug\VirusT.dll
+D:\Projects\VirusEx\VirusEx\bin\Debug\VirusT.pdb

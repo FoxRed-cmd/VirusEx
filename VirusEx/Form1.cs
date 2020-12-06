@@ -1,27 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using VirusTotalNet;
-using VirusTotalNet.Results;
+using VirusT;
 
 namespace VirusEx
 {
 	public partial class Form1 : Form
 	{
-		string apiKey;
+		string apiKey, resultID, result;
 		string[] files;
 		string pathAPI = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\API.txt";
+		List<string> results = new List<string>();
 
 
 		public Form1()
 		{
 			InitializeComponent();
-			label1.Text = "";
-			label2.Text = "";
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
@@ -42,46 +42,17 @@ namespace VirusEx
 
 		}
 
-		Func<string, string, string> getJsonValue = delegate (string source, string key)
+		void panel1_DragDrop(object sender, DragEventArgs e)
 		{
-			int from = source.IndexOf(key + "\":"), to = from > 0 ? source.IndexOf(",", from) : -1;
-			if (from > 0 && to > 0)
-				return source.Substring(from + (key + "\":").Length, to - from - (key + "\":").Length).Replace("\"", "").Trim();
-			return null;
-		};
-
-
-		async void panel1_DragDrop(object sender, DragEventArgs e)
-		{
+			textBox2.Clear();
 			try
 			{
-				label1.Text = "";
-				label2.Text = "";
-
-				string uploadResult, resourceId;
 				files = (string[])e.Data.GetData(DataFormats.FileDrop);
 				VirusTotal virusTotal = new VirusTotal(apiKey);
-				virusTotal.UseTLS = true;
-				var nvc = new NameValueCollection();
-				nvc.Add("apikey", apiKey);
+				resultID = virusTotal.ScanFile(files[0]);
+				result = virusTotal.GetResults(resultID);
+				var r = ParseJSON(result);
 
-				using (WebClient webClient = new WebClient() { QueryString = nvc })
-				{
-					FileInfo fileInfo = new FileInfo(files[0]);
-					webClient.Headers.Add("Content-type", "binary/octet-stream");
-					do
-					{
-						uploadResult = Encoding.Default.GetString(webClient.UploadFile("https://www.virustotal.com/vtapi/v2/file/scan", "post", files[0]));
-						resourceId = getJsonValue(uploadResult, "resource");
-
-					} while (resourceId == null);
-					FileReport fileReport = await virusTotal.GetFileReportAsync(resourceId);
-					foreach (var item in fileReport.Scans)
-					{
-						label1.Text += item.Value.Result == null ? "Undetected" + "\r\n" : item.Value.Result.ToString() + "\r\n";
-						label2.Text += item.Value.Result == null ? item.Key.ToString() + "\r\n" : item.Key.ToString() + "\r\n";
-					}
-				}
 			}
 			catch (Exception)
 			{
@@ -139,6 +110,23 @@ namespace VirusEx
 					}
 				}
 			}
+		}
+
+		Dictionary<string, string> ParseJSON(string json)
+		{
+			var d = new Dictionary<string, string>();
+			json = json.Replace("\"", null).Replace("[", null).Replace("]", null);
+			var r = json.Substring(1, json.Length - 2).Split(',');
+			foreach (string s in r)
+			{
+				d.Add(s.Split(':')[0], s.Split(':')[1]);
+			}
+			foreach (var item in d)
+			{
+				textBox2.Text += item.Key + ": ";
+				textBox2.Text += item.Value == " " ? "Undetected" + "\r\n" : item.Value + "\r\n";
+			}
+			return d;
 		}
 	}
 }

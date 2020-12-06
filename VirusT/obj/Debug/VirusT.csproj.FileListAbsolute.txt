@@ -1,0 +1,6 @@
+D:\Projects\VirusEx\VirusT\bin\Debug\VirusT.dll
+D:\Projects\VirusEx\VirusT\bin\Debug\VirusT.pdb
+D:\Projects\VirusEx\VirusT\obj\Debug\VirusT.csproj.CoreCompileInputs.cache
+D:\Projects\VirusEx\VirusT\obj\Debug\VirusT.dll
+D:\Projects\VirusEx\VirusT\obj\Debug\VirusT.pdb
+D:\Projects\VirusEx\VirusT\obj\Debug\VirusT.csprojAssemblyReference.cache

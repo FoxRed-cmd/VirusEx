@@ -15,7 +15,6 @@ D:\Projects\VirusEx\VirusEx\bin\Release\VirusEx.exe.config
 D:\Projects\VirusEx\VirusEx\bin\Release\VirusEx.exe
 D:\Projects\VirusEx\VirusEx\bin\Release\VirusEx.pdb
 D:\Projects\VirusEx\VirusEx\bin\Release\Newtonsoft.Json.dll
-D:\Projects\VirusEx\VirusEx\bin\Release\VirusTotalNet.dll
 D:\Projects\VirusEx\VirusEx\bin\Release\Newtonsoft.Json.xml
 D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.csprojAssemblyReference.cache
 D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.Form1.resources
@@ -25,3 +24,5 @@ D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.csproj.CoreCompileInputs.cache
 D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.csproj.CopyComplete
 D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.exe
 D:\Projects\VirusEx\VirusEx\obj\Release\VirusEx.pdb
+D:\Projects\VirusEx\VirusEx\bin\Release\VirusT.dll
+D:\Projects\VirusEx\VirusEx\bin\Release\VirusT.pdb
