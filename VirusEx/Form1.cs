@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,22 +40,20 @@ namespace VirusEx
 
 		}
 
-		void panel1_DragDrop(object sender, DragEventArgs e)
+		async void panel1_DragDrop(object sender, DragEventArgs e)
 		{
 			textBox2.Clear();
-			try
+
+			files = (string[])e.Data.GetData(DataFormats.FileDrop);
+			VirusTotal virusTotal = new VirusTotal(apiKey);
+			await Task.Run(() =>
 			{
-				files = (string[])e.Data.GetData(DataFormats.FileDrop);
-				VirusTotal virusTotal = new VirusTotal(apiKey);
 				resultID = virusTotal.ScanFile(files[0]);
 				result = virusTotal.GetResults(resultID);
-				var r = ParseJSON(result);
 
-			}
-			catch (Exception)
-			{
-				MessageBox.Show("Не удалось получить отчёт о файле. Ваш API ключ VirusTotal не безлимитный и имеет ограничение по умолчанию, - 4 запроса в минуту\nПовторите попытку позже", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
+			});
+			var r = ParseJSON(result);
+
 		}
 
 		private void panel1_DragEnter(object sender, DragEventArgs e)
